@@ -36,7 +36,7 @@ This script takes the raw data, and filters it in many ways.
 | Cleaning      | 125        | 0.5       | 40       | 0.25      |
 | ICA           | 500        | 2.5       | 100      | 0.5       |
 | Power         | 500        | 0.5       | 40       | 0.25      |
-| ERP           | 500        | 0.1       | 40       | .05       |
+| ERP           | 500        | 0.1       | 40       | 0.05      |
 
 
 #### Cleaning
