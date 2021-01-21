@@ -64,7 +64,6 @@ This is the steps that the script follows:
 
 1. **Notch filter for line noise.** Unless the recording was done in a really good Faraday cage, there is usually some line noise. In my own data, there was so much I got harmonics. The function provided does a notch filter for the requested frequency and 4 harmonics using a Kaiser FIR filter. I found it on some stackexchange post, I'm no expert, but the data looked reasonable. 
 ![](./images/NotchHarmonics.PNG)
-
 Usually, this is overkill since most of the time there's the low-pass filter shortly after, but in some recordings, there is just so much line noise, that the LP filter doesn't completely get rid of it. In general, it doesn't hurt.
 
 2. **Low-pass filter.** This is done before resampling as a form of anti-aliasing, and more generally removes non-brain activity (scalp EEG can't actually pick up anything over 100Hz from the brain, if not lower). Since I don't really care too much about the higher frequencies, much less their phase, I just implemented standard EEGLAB filter for this.
