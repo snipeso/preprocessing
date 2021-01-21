@@ -1,41 +1,28 @@
-# Sophia Snipes' Preprocessing Pipeline
-
 > ### Linked pages
 > [version 1](./ICA.html)
-> [version 2](snipeso.ithub.io/preprocessing/ICA.html)
 
-You can use the [editor on GitHub](https://github.com/snipeso/preprocessing/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This set of MATLAB scripts was developed and used by Sophia Snipes to clean high-density EEG data. This tutorial involves descriptions of the various pieces of code, as well as explanations for certain choices (whether based on prior work, trial-and-error, or just arbitrary), allowing the reader to decide for themselves what they wish to keep or change. There are furthermore detailed descriptions about the manual portions involved in data cleaning, and the criterion used for designating data as noise or artefact. 
 
-### Markdown
+Disclaimer: this is a work in progress, and will invariably change as more information comes to light. Exact scripts used in published data are saved in seperate repositories.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# The Pipeline
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+## 0. Formatting the data
+### Dependencies
+This process heavily relies on the [EEGLAB Toolbox](https://sccn.ucsd.edu/eeglab/index.php), designed on version 2019.
 
-- Bulleted
-- List
+### Data structure
+All files should be saved as ".set", using the EEGLAB data structure. Importantly, these must already contain the fields "srate" and "chanlocs", and of course "data". EEG data is thus stored as a channel x time matrix. An example script is provided for converting data from BrainAmp to EEGLAB.
 
-1. Numbered
-2. List
+SET files are expected to be in the same folder, with meaningful names (e.g. "P01_baseline_task1.set"). 
 
-**Bold** and _Italic_ and `Code` text
+NO PROCESSING should be done to the starting data! It should be the rawest of raw data, saved as an EEGLAB structure. 
 
-[Link](url) and ![Image](src)
-```
+### Example script
+1) Install BrainAmp extension. This can easily be done from the EEGLAB GUI.
+2) Adjust in "General_Parameters.mat" the location of the raw files, and the location in which you want to save the preprocessed data.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/snipeso/preprocessing/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## 1. 
