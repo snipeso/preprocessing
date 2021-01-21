@@ -1,8 +1,4 @@
-# Sophia Snipes' Preprocessing Pipeline
-
-> ### Linked pages
-> [version 1](./ICA.html)
-> [version 2](snipeso.ithub.io/preprocessing/ICA.html)
+## Cleaning Data with ICA
 
 You can use the [editor on GitHub](https://github.com/snipeso/preprocessing/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
