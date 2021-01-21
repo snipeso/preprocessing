@@ -21,9 +21,9 @@ SET files are expected to be in the same folder, with meaningful names (e.g. "P0
 NO PROCESSING should be done to the starting data! It should be the rawest of raw data, saved as an EEGLAB structure. 
 
 ### Example script
-1) Install BrainAmp extension. This can easily be done from the EEGLAB GUI.
-2) Adjust in "General_Parameters.mat" the location of the raw files, and the location in which you want to save the preprocessed data.
-3) Run script, and hope for the best!
+1. Install BrainAmp extension. This can easily be done from the EEGLAB GUI.
+2. Adjust in "General_Parameters.mat" the location of the raw files, and the location in which you want to save the preprocessed data.
+3. Run script, and hope for the best!
 
 
 ## 1. Filtering
@@ -37,6 +37,7 @@ This script takes the raw data, and filters it in many ways.
 | ICA           | 500        | 2.5       | 100      | 0.5       |
 | Power         | 500        | 0.5       | 40       | 0.25      |
 | ERP           | 500        | 0.1       | 40       | .05       |
+
 
 #### Cleaning
 This is used for visually inspecting the data and identfying periods of noise. Uses the minimum reasonable sampling rate to make the files lighter, but has the same pass filters as "Power" and "ERP", because different filters will change whether there's an artefact that needs to be cut out or not. 
@@ -56,3 +57,16 @@ This is the main data I focus on. The components will be removed from this set. 
 Different filters are needed for calculating Event Related Potentials, since important components like the P300 can be affected by strong filtering. Furthermore, effects can leak into pre-stimulus timepoints, and that is very bad.
 
 ![](./images/ERP_filtering.PNG)
+
+
+### Procedure
+This is the steps that the script follows:
+
+1. **Notch filter for line noise.** Unless the recording was done in a really good Faraday cage, there is usually some line noise. In my own data, there was so much I got harmonics. The function provided does a notch filter for the requested frequency and 4 harmonics using a Kaiser FIR filter. I found it on some stackexchange post, I'm no expert, but the data looked reasonable. 
+![](./images/NotchHarmonics.PNG)
+
+Usually, this is overkill since most of the time there's the low-pass filter shortly after, but in some recordings, there is just so much line noise, that the LP filter doesn't completely get rid of it. In general, it doesn't hurt.
+
+2. **Low-pass filter.** This is done before resampling as a form of anti-aliasing. Since I don't really care too much about the higher frequencies, much less their phase, I just implemented standard EEGLAB filter for this.
+
+3. 

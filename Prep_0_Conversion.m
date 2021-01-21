@@ -3,16 +3,16 @@
 
 
 % create destination folder
-Paths.SET = fullfile(Paths.Preprocessed, 'Unfiltered');
-if ~exist(Paths.SET, 'dir')
-    mkdir(Paths.SET)
+Paths_SET = fullfile(Paths_Preprocessed, 'Unfiltered');
+if ~exist(Paths_SET, 'dir')
+    mkdir(Paths_SET)
 end
 
 
 % get channel locations file for 128 channels
 load(fullfile([cd, '\StandardChanlocs128.mat']), 'StandardChanlocs')
 
-Files = deblank(string(ls(Paths.Raw))); % get list of filenames
+Files = deblank(string(ls(Paths_Raw))); % get list of filenames
 Files(~contains(Files, '.vhdr')) = []; % only consider headers
 
 for Indx_F = 1:numel(Files)
