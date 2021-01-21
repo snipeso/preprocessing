@@ -67,6 +67,8 @@ This is the steps that the script follows:
 
 Usually, this is overkill since most of the time there's the low-pass filter shortly after, but in some recordings, there is just so much line noise, that the LP filter doesn't completely get rid of it. In general, it doesn't hurt.
 
-2. **Low-pass filter.** This is done before resampling as a form of anti-aliasing. Since I don't really care too much about the higher frequencies, much less their phase, I just implemented standard EEGLAB filter for this.
+2. **Low-pass filter.** This is done before resampling as a form of anti-aliasing, and more generally removes non-brain activity (scalp EEG can't actually pick up anything over 100Hz from the brain, if not lower). Since I don't really care too much about the higher frequencies, much less their phase, I just implemented standard EEGLAB filter for this.
 
-3. 
+3. **Downsampling.** This is usually optional if you didn't record data at insanely high sampling rates like I did. In general, it speeds things up to have lower srates. Rule of thumb is to have a sampling rate 3-5 times higher than your LP filter.
+
+4. **High-pass filter.** This is a more specially designed filter that tries to cut off the lower frequencies at exactly the value indicated (whereas the EEGLAB filter is more gradual, leaving intact frequencies a little lower than the HP cutoff). Importantly, the low-pass and high pass filters need to happen seperately (or so I'm told by engineering types). Also, better to do this filter after downsampling, since it takes a long time. 
