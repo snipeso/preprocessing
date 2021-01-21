@@ -1,1 +1,3 @@
 theme: jekyll-theme-leap-day
+title: "Snipes Preprocessing Pipeline"
+description: "Scripts and instructions for cleaning wake EEG data"
