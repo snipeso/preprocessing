@@ -58,13 +58,13 @@ Parameters(6).hp_stopband = 0.05; % high pass filter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Create filtered sets
 
-Source = fullfile(Paths.Preprocessed, 'Unfiltered');
+Source = fullfile(Paths_Preprocessed, 'Unfiltered');
 Files = deblank(string(ls(Source)));
 
 
 for Indx_DF = 1:numel(Destination_Formats)
     Format = Destination_Formats{Indx_DF};
-    Destination = fullfile(Paths.Preprocessed, Format, 'SET');
+    Destination = fullfile(Paths_Preprocessed, Format, 'SET');
     
     if ~exist(Destination, 'dir')
         mkdir(Destination)
