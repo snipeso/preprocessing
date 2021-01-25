@@ -87,11 +87,7 @@ This is when someone moves a lot of channels at once, for example if they shift 
 <p>&nbsp;</p>
 
 ## Cleaning examples
-![](./images/Other/BadCh.PNG)
-The channels in red are the ones I choose to remove. The first three are indisputable; the fluctuations are completely out of whack relative to the rest of the EEG. This comes from poor contact of the electrode with the scalp.
-The last channel is more subjective. I choose to remove channels with high frequency noise, especially when other channels are much cleaner.
 
-<p>&nbsp;</p>
 
 #### Good data
 
@@ -187,6 +183,13 @@ ICA should still be able to get rid of even this level of eye movement; just dou
 ![](./images/MWT/verynoisy.PNG)
 Pretty evident.
 
+
+<p>&nbsp;</p>
+
+
+![](./images/Other/BadCh.PNG)
+The channels in red are the ones I choose to remove. The first three are indisputable; the fluctuations are completely out of whack relative to the rest of the EEG. This comes from poor contact of the electrode with the scalp.
+The last channel is more subjective. I choose to remove channels with high frequency noise, especially when other channels are much cleaner.
 
 
 <p>&nbsp;</p>
