@@ -1,8 +1,15 @@
 # Suggestions on what data to cut
-This is a compilation of what to remove in step 2 of visual inspection. The artefacts are ordered by "severity". Especially near the end, the decision comes down to whether an artefact is interfereing with your main analysis, or if you've been removing too much data. 
+This is a compilation of what to remove in step 2 of visual inspection.
 
 Since this is an "arbitrary" process, it is important that you don't introduce systematic bias, for example cleaning seperately conditions you later compare, especially if you have reason to believe they might have different levels of noise.
 It's also best if you don't know what file you're cleaning each time.
+
+The goals to keep in mind are, in order:
+1. Remove anything that would mask data
+2. Preserve as much data as possible
+3. Have the data as clean as possible
+
+The most important thing is that nothing is left in the recording that directly affects your outcome measures of real brain signal. This is very much a "you know it when you see it" type of artifact. Point 2 is about going to the effort of salvaging data in the middle of noise. Point 3 counteracts to some extent point 2, but has to take a back seat if you're cleaning too heavily. 
 
 The criteria in order of importance when deciding what to remove or not:
 1. **How big is it?** If the occurance involves crazy high amplitudes relative to the rest of the signal, it needs removing.
@@ -17,17 +24,20 @@ When NOT to remove some data:
 2. **It can be removed with ICA**: don't remove anything that you know will go away with ICA, namely eye movements (blinks, saccades, rolling eye movements) and heartbeat. Vice versa, if you know something can't be properly removed with ICA (like single-occurance events, or high-frequency bursts), it's a good reason to cut it out. 
 3. **The discontinuity is more detrimental than the noise**: if an artefact is small, selecting it as a segment to be removed can create more of an artefact from "edge artifacts", for example in power calculations or ERPs.
 4. **Too much data has been removed, and it's not too bad**. This applies when you have a lot of worse noise in the file, and this timepoint/channel still preserves a reasonable amount of signal. It's a judgement call, because the alternative would be to not include the file at all, and some statistics really don't like that, and if you have a low n (e.g. clinical data), you often can't afford to be too picky. In practice, I've had this happen with a) mild muscle activity when many other channels had a lot of high muscle activity b) low amplitude low frequency irregular fluctuations in most channels. 
-[picture]()
 
 What counts as too much data being removed? I don't actually know. With 128 channels, there's a lot of redundant information in neighboring channels, and so interpolation (last preprocessing step) recovers essentially all the relevant EEG, especially for <12hz information. This process works less well when the channels being removed are on the periphery, but these also tend to contain less brain data in general. My personal criterion was whether the remaining channels/timepoints still captured visible EEG events in more than 1 channel (and again anything that would be removed with ICA).
 
 Recommendation: if there are channels that are removed in a majority of datasets, jut remove them in all of the datasets.
 
+Important: be consistent. If multiple people are cleaning the data, either have one person check the rest, or have each person handle a whole participant; don't introduce bias across conditions or groups.
 
-## Channels to remove
-Sometimes artefacts appear and disappear in a single channel. In this case, the decision comes down to whether you would remove more data by taking out a channel (1/128) vs the time segment. I also remove channels if I don't have an explanation for why the artefact appeared and disappeared.
+### Removing channels vs removing timepoints
+Sometimes it's obvious that a channel is bad. More often, a channel is sometimes bad, and sometimes fine.
+
+## What's noise and what's signal
+
+#### Clean Data
+![](./images/CleanData1.PNG)
 
 
-
-
-## Segments to remove
+## Cleaning examples
