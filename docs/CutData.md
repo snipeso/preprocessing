@@ -105,7 +105,7 @@ This is all clean, just alpha instead of theta. There are little things, but not
 <p>&nbsp;</p>
 
 ![](./images/Standing/UglyData.PNG)
-This is an example of "ugly" data, but no good reason (or method) for getting rid of it.
+This is an example of "ugly" data, but no good reason (or method) for getting rid of it. It's ugly because there's a lot of low frequency, low amplitude fluctuations that are not synchronized with neihgboring channels. No idea what causes this. Not too common, though.
 
 
 <p>&nbsp;</p>
@@ -181,11 +181,7 @@ ICA should still be able to get rid of even this level of eye movement; just dou
 
 #### Noise
 
-![](./images/MWT/verynoisy.PNG)
-Pretty evident.
 
-
-<p>&nbsp;</p>
 
 
 ![](./images/Other/BadCh.PNG)
@@ -232,11 +228,17 @@ The line is what happens when you pause an EEG recording. Technically, it's also
 
 <p>&nbsp;</p>
 
+![](./images/MWT/verynoisy.PNG)
+Pretty evident the part to cut. Regarding the channels, the first one indicates a very noisy channel that I have no doubt about removing, the second is borderline.
+
+
+<p>&nbsp;</p>
+
 #### Muscles
 ![](./images/MWT/BadChUnselected.PNG)
 In the end, it's a choice, but I think it's good to remove channels that obviously stand out as having high-frequency noise; marked with arrows.
 "Stand out" is important; when the data is really noisy, a channel like the first one might be relatively clean, and so to avoid removing too much data, I'd leave it in. But in this case, with such clean data, I can afford to get rid of even little bits of noise. 
-Data from 9 to 16 should be cut out as colunm.
+
 
 <p>&nbsp;</p>
 
