@@ -1,5 +1,6 @@
 > #### Linked pages
 > [How to](./HowTo.html) actually run everything without changing anything.
+>
 > [What's noise](./CutData.html) and what not to manually remove from EEG data.
 
 
