@@ -38,6 +38,29 @@ Sometimes it's obvious that a channel is bad. More often, a channel is sometimes
 
 #### Clean Data
 ![](./images/CleanData1.PNG)
+This data is 60 seconds of EEG across 128 channels, according to the following labels:
+![](./images/128Ch.PNG)
+
+#### Eyes open
+![](./images/Biocalibration/EO.PNG)
+> Bad channels have not been removed yet
+
+#### Eyex closed
+![](./images/Biocalibration/EC.PNG)
+The circled area shows the artifect of eyes being closed. This will be removed with ICA. The central channels in the pannel are occipital channels, where alpha activity increases once eyes are closed (Berger Effect).
+
+
+#### Blinks
+![](./images/Biocalibration/blink.PNG)
+This is a participant blinking once per second. All eye movements get nicely removed with ICA. 
+
+
+#### Muscle & movement
+![](./images/Biocalibration/Jaw&Eyes.PNG)
+The thick dark band affecting almost all channels is muscle activity. This is a very prominent example, but it often occurs in smaller bursts, and in fewer channels. This can either be removed with intense filtering (LP <15Hz), which is suboptimal, or if it's localized in time like this, cut out that segment of data. Likewise if there's a couple of channels that show the same high-frequency activity all the time (because electrode was placed on a muscle), this channel should be removed.
+
+The large sharp spikes in frontal channels (top band) is due to movement of the skin around the eyes shifting under the electrode. This is also what it looks like when the participants scratches the net, or similar. There's no filtering that away, it needs to be cut out. 
 
 
 ## Cleaning examples
+[]!(./images/Biocalibration/BadCh.PNG)
