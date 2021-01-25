@@ -107,7 +107,7 @@ This is all clean, just alpha instead of theta. There are little things, but not
 
 <p>&nbsp;</p>
 
-![](./images/Standing/UglyData.PNG)
+![](./images/MWT/messy.PNG)
 This is an example of "ugly" data, but no good reason (or method) for getting rid of it.
 
 
@@ -192,7 +192,7 @@ Pretty evident.
 <p>&nbsp;</p>
 
 ![](./images/Other/unknown.PNG)
-The channel indicated with an arrow is noise. It's particularly nefarious, because it's low amplitude oscillations around 1Hz, and so could go undetected. I think it comes from poor impedence. You can see in this CZ referenced data that it's the only channel showing this, but once you do average reference, it would bleed into the neighbors. 
+The channel indicated with an arrow is noise. It's particularly nefarious, because it's low amplitude oscillations around 1Hz, and so could go undetected. I think it comes from poor impedence. You can see in this CZ referenced data that it's the only channel showing this, but once you do average reference, it would bleed into the other channels. 
 
 
 <p>&nbsp;</p>
