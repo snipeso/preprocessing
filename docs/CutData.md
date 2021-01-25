@@ -39,9 +39,9 @@ Important: be consistent. If multiple people are cleaning the data, either have 
 Keep in mind: The reason this is manual is that there's so much variability across participants, conditions and brain states that automatic methods are unlikely to be flexible enough (in experiments like mine), and will either remove too much data, or too little noise. Furthermore, when running automatic scripts, you're less likely to know what's happening.
 
 <p>&nbsp;</p>
-
+<!-- 
 ### Removing channels vs removing timepoints
-Sometimes it's obvious that a channel is bad. More often, a channel is sometimes bad, and sometimes fine.
+Sometimes it's obvious that a channel is bad. More often, a channel is sometimes bad, and sometimes fine. -->
 
 ## What's noise and what's signal
 
@@ -94,7 +94,7 @@ This is when someone moves a lot of channels at once, for example if they shift 
 
 
 ![](./images/Other/LOTStheta.PNG)
-This is actually clean data; instead all the activity comes from a lot of theta oscillations in a strongly sleep deprivated individual. The channels removed had instead high-frequency noise, and occasional flares of poor contact (172-177s).
+This is actually clean data; instead all the activity comes from a lot of theta oscillations in a strongly sleep deprivated individual. The channels removed had instead high-frequency noise, and occasional flares of poor contact.
 
 
 <p>&nbsp;</p>
@@ -104,13 +104,13 @@ This is all clean, just alpha instead of theta. There are little things, but not
 
 <p>&nbsp;</p>
 
-![](./images/MWT/messy.PNG)
+![](./images/Standing/UglyData.PNG)
 This is an example of "ugly" data, but no good reason (or method) for getting rid of it.
 
 
 <p>&nbsp;</p>
 
-![](./images/MWT/BadChUnselected3.PNG)
+![](./images/MWT/messy.PNG)
 This instead, unlike above, is too "ugly", and should just get cut out. Importantly, the rest of the data is much cleaner. Those things that occur across all channels? Those are sleep-related oscillations, which tend to be more global than wake. If you see this in data in which participants should be wide awake, then maybe get suspicious.
 
 <p>&nbsp;</p>
