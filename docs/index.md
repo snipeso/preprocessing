@@ -1,5 +1,6 @@
 > #### Linked pages
 > [How to](./HowTo.html) actually run everything without changing anything.
+> [What's noise](./CutData.html) and what not to manually remove from EEG data.
 
 
 This set of MATLAB scripts was developed and used by Sophia Snipes to clean high-density EEG data. This tutorial involves descriptions of the various pieces of code, as well as explanations for certain choices (whether based on prior work, trial-and-error, or just arbitrary), allowing the reader to decide for themselves what they wish to keep or change. There are furthermore detailed descriptions about the manual portions involved in data cleaning, and the criterion used for designating data as noise or artefact. 
