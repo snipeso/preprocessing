@@ -42,7 +42,6 @@ codegen/
 octave-workspace
 Preprocessing/allfilts.mat
 *.fig
-*.mat
 *.set
 
 !StandardChanlocs128.mat
