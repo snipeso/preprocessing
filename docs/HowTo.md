@@ -1,6 +1,6 @@
 # How to just run everything
 
-0. Figure out for yourself how to convert data into a "set" file. Make sure all the data you want to clean is in the same folder, called "Unfiltered".
+0. Install EEGLAB, and if using BrainAmp, then the "bv toolbox" for eeglab (just use the GUI, try to import one of the files, and there's a menu option for downloading the necessary toolbox for BrainAmp).
 1. In *General_Parameters.m*, change the *Paths_Preprocessed* variable to the location of your "Unfiltered" folder.
 2. Run *Prep1_Filtering.m*. This can take several hours if you have a lot of data.
 3. Run *Prep2_Visual_Inspection.m*. A popup will show the EEG in the EEGLAB GUI "data scroll". 

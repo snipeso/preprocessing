@@ -1,5 +1,5 @@
 % Script by Sophia Snipes, 21/01/21
-% Converts BrainAmp data into EEGLAB SET files
+% Converts raw data into EEGLAB SET files
 
 
 % create destination folder
@@ -8,25 +8,12 @@ if ~exist(Paths_SET, 'dir')
     mkdir(Paths_SET)
 end
 
-
-% get channel locations file for 128 channels
-load(fullfile([cd, '\StandardChanlocs128.mat']), 'StandardChanlocs')
-
 Files = deblank(string(ls(Paths_Raw))); % get list of filenames
-Files(~contains(Files, '.vhdr')) = []; % only consider headers
+Files(~contains(Files, Filetype)) = []; % only consider headers
 
 for Indx_F = 1:numel(Files)
     
-    VHDR = Files{Indx_F};
-    Core = extractBefore(VHDR, '.');
-    SET = [Core, '.set'];
-    
-    % load the data into EEGLAB structure
-    EEG = pop_loadbv(Path, VHDR);
-    
-    % update EEG structure
-    EEG.ref = 'CZ';
-    EEG.chanlocs = StandardChanlocs;
+    EEG = loadData(Files{Indx_F}, Paths_Raw);
     
     % save
     pop_saveset(EEG, 'filename', SET, ...
@@ -34,5 +21,4 @@ for Indx_F = 1:numel(Files)
         'check', 'on', ...
         'savemode', 'onefile', ...
         'version', '7.3');
-    
 end
