@@ -8,10 +8,11 @@ This set of MATLAB scripts was developed and used by Sophia Snipes to clean high
 
 Disclaimer: this is a work in progress, and will invariably change as more information comes to light. Exact scripts used in published data are saved in seperate repositories.
 
-# The Pipeline
 
 
-## 0. Formatting the data
+<p>&nbsp;</p>
+
+# 0. Formatting the data
 ### Dependencies
 This process heavily relies on the [EEGLAB Toolbox](https://sccn.ucsd.edu/eeglab/index.php), designed on version 2019.
 
@@ -28,7 +29,10 @@ NO PROCESSING should be done to the starting data! It should be the rawest of ra
 3. Run script, and hope for the best!
 
 
-## 1. Filtering
+
+<p>&nbsp;</p>
+
+# 1. Filtering
 This script takes the raw data, and filters it in many ways. 
 
 ### Filtering parameters
@@ -75,7 +79,9 @@ Usually, this is overkill since most of the time there's the low-pass filter sho
 4. **High-pass filter.** This is a more specially designed filter that tries to cut off the lower frequencies at exactly the value indicated (whereas the EEGLAB filter is more gradual, leaving intact frequencies a little lower than the HP cutoff). Importantly, the low-pass and high pass filters need to happen seperately (or so I'm told by engineering types). Also, better to do this filter after downsampling, since it takes a long time. 
 
 
-## 2. Visual Inspection
+<p>&nbsp;</p>
+
+# 2. Visual Inspection
 This set of scripts allows the experimenter to go through every recording, identify bad channels and bad time segments. At the moment things are very crude, partially using the EEGLAB GUI and the editor to run functions.
 
 The data to be removed in a file saved as "{originalfilename}_Cuts.mat". The functions take advantage of the "writable" property of mat files, so that every change is instantly saved to the mat file without the user having to explicitly save things every time. The only time the user needs to "save" is after using the EEGLAB GUI.
@@ -103,7 +109,7 @@ This function looks at the source folder, and if no filename is specifically pro
 This also creates the cuts mat file, saves the relevant filenames/paths, and srate.
 
 
-#### MarkData(EEG)
+#### markData(EEG)
 This a bit of a messy script that uses EEGLAB's GUI to show the EEG data, Cut segments already selected, and removed channels. To save selected segments to remove, need to click "save". If you don't want to keep them, just close the window. To see channels removed from the editor, need to close window and run this function again.
 
 #### rmCh(Cuts_Filepath, Channels)
@@ -111,3 +117,17 @@ This is used to indicate which channels to remove. Theoretically, if you want to
 
 #### rsCh()
 Same as above, only it deselects channels to remove. This is in case you make a mistake and indicated the wrong channel index.
+
+
+<p>&nbsp;</p>
+
+# 3. Run ICA
+This script calculates the independent components using the "runica" function of EEGLAB. You don't have to do anything but run it, preferably overnight, since if you have a lot of data this can be slow. If you don't use the Huber high-density EEG setup, you might want to change the "VeryBadChannels" variable to indicate any channels you don't wish to include in the average referencing (like chin or EKG).
+
+
+### Procedure
+
+1. Removes manually identified bad channels + additional channels specified at the beginning of the script
+2. Rereferences the EEG to the average
+3. Gets ICA components (slooowly)
+4. Saves a new EEG set file with all this information

@@ -10,4 +10,4 @@
     4. To see which channel you've actually removed, close the current EEG window (save if you selected any data to cut), and then run again `MarkData(EEG)`
     5. If you want to restore the channel removed, just run `rsCh(EEG.CutFilepath)`.
 4. Repeat 3 until all data is cleaned. Suggestion: either have anonymized/blinded filenames, or take special care not to look at the editor before choosing what to remove and leave behind to avoid biasing the data cleaning.
-5. Run 
+5. Run *Prep3_ICA.m*. N.B. If not using EGI 128ch net, indicate first in the variable "VeryBadChannels" the indices of channels that are not recording brain data, and wouldn't make sense to include.
