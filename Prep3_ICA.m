@@ -18,9 +18,9 @@ VeryBadChannels = [107 113]; % indicate here channels not to include for the ave
 
 General_Parameters
 
-Source = fullfile(Paths.Preprocessed, 'ICA', 'SET');
-Source_Cuts = fullfile(Paths.Preprocessed, 'Cleaning', 'Cuts');
-Destination = fullfile(Paths.Preprocessed, 'ICA', 'Components');
+Source = fullfile(Paths_Preprocessed, 'ICA', 'SET');
+Source_Cuts = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
+Destination = fullfile(Paths_Preprocessed, 'ICA', 'Components');
 
 if ~exist(Destination, 'dir')
     mkdir(Destination)
