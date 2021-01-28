@@ -14,7 +14,7 @@ Labels = Labels';
 Indexes(Indexes == 0) = [];
 
 if any(not(Members))
-    warning(strjoin([ 'Chan ', Labels(not(Members)), ' not present in the chanlocs']))
+    warning(strjoin([ 'Chan ', Labels(not(Members))', ' not present in the chanlocs']))
 end
 
 

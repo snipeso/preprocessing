@@ -8,15 +8,16 @@ close all
 clc
 
 % TODO: interpolate segments before averaging?
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Refresh = true;
-VeryBadChannels = [107 113]; % indicate here channels not to include for the average reference; like non-brain channels
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 General_Parameters
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Refresh = false;
+VeryBadChannels = [EEG_Channels.EMG, EEG_Channels.face]; % indicate here channels not to include for the average reference; like non-brain channels
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 Source = fullfile(Paths_Preprocessed, 'ICA', 'SET');
 Source_Cuts = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
