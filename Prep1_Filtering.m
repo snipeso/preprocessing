@@ -60,7 +60,7 @@ Parameters(6).hp_stopband = 0.05; % high pass filter
 
 Source = fullfile(Paths_Preprocessed, 'Unfiltered');
 Files = deblank(string(ls(Source)));
-
+Files(~contains(Files, '.set')) = [];
 
 for Indx_DF = 1:numel(Destination_Formats)
     Format = Destination_Formats{Indx_DF};
@@ -71,7 +71,7 @@ for Indx_DF = 1:numel(Destination_Formats)
     end
     
     % get parameters based on format
-    Indx = strcmp({Parameters.Format}, Destination_Format);
+    Indx = strcmp({Parameters.Format}, Format);
     new_fs = Parameters(Indx).fs;
     lowpass = Parameters(Indx).lp;
     highpass = Parameters(Indx).hp;
@@ -79,7 +79,7 @@ for Indx_DF = 1:numel(Destination_Formats)
     P = Parameters(Indx); % saved in EEG structure later for record keeping
     
     
-    parfor Indx_F = 1:numel(Files) % this is really much faster in parallel
+    for Indx_F = 1:numel(Files) % this is really much faster in parallel
         Filename = Files{Indx_F};
         Filename_New = [extractBefore(Filename, '.set'), '_', Format, '.set']; % indicate what was done to the new file
         

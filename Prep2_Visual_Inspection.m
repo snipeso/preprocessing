@@ -21,7 +21,7 @@ Destination = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
 EEG = loadEEGtoCut(Source, Destination, Filename); % load file
 m = matfile(EEG.CutFilepath,'Writable',true); % create cuts file, load it to current workspace
 
-MarkData(EEG) % plot data
+markData(EEG) % plot data
 
 
 %% remove or restore a whole channel
