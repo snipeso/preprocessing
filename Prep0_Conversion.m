@@ -1,6 +1,7 @@
 % Script by Sophia Snipes, 21/01/21
 % Converts raw data into EEGLAB SET files
 
+General_Parameters
 
 % create destination folder
 Paths_SET = fullfile(Paths_Preprocessed, 'Unfiltered');
@@ -13,11 +14,11 @@ Files(~contains(Files, Filetype)) = []; % only consider headers
 
 for Indx_F = 1:numel(Files)
     
-    EEG = loadData(Files{Indx_F}, Paths_Raw);
+    [EEG, SET] = loadData(Files{Indx_F}, Paths_Raw);
     
     % save
     pop_saveset(EEG, 'filename', SET, ...
-        'filepath', Paths.SET, ...
+        'filepath', Paths_SET, ...
         'check', 'on', ...
         'savemode', 'onefile', ...
         'version', '7.3');
