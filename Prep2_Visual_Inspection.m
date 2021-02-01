@@ -37,7 +37,7 @@ markData(EEG) % plot data
 %% remove or restore a little piece of a channel
 %%% If there's a little chunck of a channel that went haywire, but the
 %%% rest of the channel is fine, you can mark a section to remove, by
-%%% running CutSnippet(), indicating in seconds the start time and end time
+%%% running rmSnip(), indicating in seconds the start time and end time
 %%% of the channel you want to remove. If you run this, then open
 %%% MarkData() it will highlight the section in red.
 
