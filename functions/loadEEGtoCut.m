@@ -36,7 +36,7 @@ CutFilename = [extractBefore(FilteredFilename, '.set'), Extention];
 
 % load EEG
 EEG = pop_loadset('filename', FilteredFilename, 'filepath', Source);
-
+clc
 
 % inform user if this is a repeat
 CutFilepath = fullfile(Destination, CutFilename);

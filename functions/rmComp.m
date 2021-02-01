@@ -82,8 +82,9 @@ if strcmpi(x, 'y')
     disp(['***********', 'Finished ', Filename_Destination, '***********'])
     close all
     Break = true;
-elseif strcmpi(x, 'n')
-    rmComp
+elseif strcmpi(x, 's')
+  
+      Break = false;
 elseif strcmpi(x, 'auto')
     pop_saveset(NewEEG, 'filename', Filename_Destination, ...
         'filepath', Destination, ...
@@ -94,6 +95,6 @@ elseif strcmpi(x, 'auto')
     disp(['***********', 'Finished ', Filename_Destination, '***********'])
     close all
     Break = false;
-else
-    Break = false;
+else % if 'n' or anything else
+    rmComp
 end
