@@ -12,7 +12,7 @@ General_Parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Refresh = false;
+Refresh = true;
 VeryBadChannels = [EEG_Channels.EMG, EEG_Channels.face]; % indicate here channels not to include for the average reference; like non-brain channels
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
