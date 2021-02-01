@@ -1,8 +1,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Establish locations
-Paths_Preprocessed = 'C:\Users\colas\polybox\MDD\Raw Files\MDD_evening\test';
-Paths_Raw = 'C:\Users\colas\polybox\MDD\Raw Files\MDD_evening\test';
+Paths_Preprocessed = '';
+Paths_Raw = '';
 Filetype = '.raw'; % either .raw for EGI, or .eeg for BrainAmp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
