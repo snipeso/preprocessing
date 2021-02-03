@@ -7,8 +7,8 @@ This pipeline finds components to remove by viewing the first 35 components, and
 While the topoplots shown are the first indication if something is an artifact or not, further inspection is required. When you click on the little button on top, a popup like this will appear:
 ![](./images/ICA/Blinks2.PNG)
 - The topoplot is further enlarged
-- the top-right plot indicates the amplitude of the component in time, with the recording represented as thinly stacked bars. If a component only has one or two spikes of activity in the whole recording, it is best not to remove it, and instead cut out this data in Prep2 (you probably did already).
-- The bottom plot shows the spectrogram. EEG is characterized by a gentle slope downwards, and then a sharp cutoff around 50Hz. Alpha or theta components will show prominent bumps in the corresponding ranges.
+- the top-right plot indicates the amplitude of the component in time, with the recording represented as thinly stacked bars. If a component only has one or two spikes of activity in the whole recording, it is best not to remove it, and instead cut out this data in Prep2 (you probably already did).
+- The bottom plot shows the spectrogram. Brain components are characterized by a gentle slope downwards, and then a sharp cutoff around 50Hz. Alpha or theta components will show prominent bumps in the corresponding ranges.
 
 
 
@@ -18,11 +18,9 @@ While the topoplots shown are the first indication if something is an artifact o
 ### Eye components
 #### Blinks
 ![](./images/ICA/Blink1.PNG)
-Blinks are easily identifiable by the blobs over the eye channels. Depending on their intensity, the spectrum can either clearly show the 40Hz cutoff or not. In the top-right plot, they appear throughout the recording sporadically, although not at regular frequencies.
+Blinks are easily identifiable by the blobs over the eye channels. Depending on their intensity, the spectrum can either clearly show the 50Hz cutoff or not. In the top-right plot, they appear throughout the recording sporadically, although not at regular frequencies.
 
-They are often among the first components, can be just 1, or even 2-3. 
-
-<p>&nbsp;</p>
+Blinks are often among the first components, can be just 1, or even 2-3. 
 
 
 ![](./images/ICA/Blink3.PNG)
@@ -30,6 +28,8 @@ They are often among the first components, can be just 1, or even 2-3.
 <p>&nbsp;</p>
 
 ![](./images/ICA/Eyes.PNG)
+
+Eye components can also be assymetrical, with only one eye really being involved. This is easily the case when the net is on a little crooked (or their eyes are not symmetrical), and so there's an inbalance.
 
 
 <p>&nbsp;</p>
@@ -63,7 +63,7 @@ In general, the fewer artefacts occur, the more shaky the topoplot is for that c
 
 
 ![](./images/ICA/Heartbeat.PNG)
-This is what an ideal hearbeat component can look like.  it has a gradient from one edge to the other of the topoplot, and then in the top-right plot it is characterized by regularly occuring little spikes. The power spectrum is also a little wonky. 
+This is what an ideal hearbeat component can look like.  It has a gradient from one edge to the other of the topoplot, and then in the top-right plot it is characterized by regularly occuring little spikes. The power spectrum is also a little wonky. 
 
 <p>&nbsp;</p>
 
@@ -76,7 +76,7 @@ Unfortunately, sometimes the heartbeat component picks up other stuff, and so yo
 
 ![](./images/ICA/Muscle.PNG)
 This is a typical eye-muscle component. Unfortunately, ICA is the best way to remove them since they tend to overlap a lot with important channels. Usually, there are multiple such components that need to be removed at the same time. 
-In order not to remove too many, my personal benchmark is that I only remove muscle components when the >20Hz spectrum is higher than the <20Hz, and that it is spread out throughout the recording (top-right plot).
+In order not to remove too many, my personal benchmark is that I only remove muscle components when the >15Hz spectrum is higher than the <15Hz, and that it is spread out throughout the recording (top-right plot).
 
 <p>&nbsp;</p>
 
