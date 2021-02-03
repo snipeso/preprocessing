@@ -7,7 +7,7 @@ This pipeline finds components to remove by viewing the first 35 components, and
 While the topoplots shown are the first indication if something is an artifact or not, further inspection is required. When you click on the little button on top, a popup like this will appear:
 ![](./images/ICA/Blinks2.PNG)
 - The topoplot is further enlarged
-- the top right plot indicates the amplitude of the component in time, with the recording represented as thinly stacked bars. If a component only has one or two spikes of activity in the whole recording, it is best not to remove it, and instead cut out this data in Prep2 (you probably did already).
+- the top-right plot indicates the amplitude of the component in time, with the recording represented as thinly stacked bars. If a component only has one or two spikes of activity in the whole recording, it is best not to remove it, and instead cut out this data in Prep2 (you probably did already).
 - The bottom plot shows the spectrogram. EEG is characterized by a gentle slope downwards, and then a sharp cutoff around 50Hz. Alpha or theta components will show prominent bumps in the corresponding ranges.
 
 
