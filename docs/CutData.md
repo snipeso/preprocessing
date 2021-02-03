@@ -1,4 +1,4 @@
-*[<- Go back](./index.html)*
+*[<- Go home](./index.html)*
 # Suggestions on what data to cut
 This is a compilation of what to remove in Prep2, visual inspection.
 
@@ -94,11 +94,11 @@ This is actually clean data; instead all the activity comes from a lot of theta 
 
 ![](./images/Standing/AllGood.PNG)
 This is all clean, just alpha instead of theta. There are little things, but not worth the effort.
-
+<!-- 
 <p>&nbsp;</p>
 
 ![](./images/Standing/UglyData.PNG)
-This is an example of "ugly" data, but no good reason (or method) for getting rid of it. It's ugly because there's a lot of low frequency, low amplitude fluctuations that are not synchronized with neihgboring channels. No idea what causes this. Not too common, though.
+This is an example of "ugly" data, but no good reason (or method) for getting rid of it. It's ugly because there's a lot of low frequency, low amplitude fluctuations that are not synchronized with neihgboring channels. No idea what causes this. Not too common, though. -->
 
 <p>&nbsp;</p>
 
