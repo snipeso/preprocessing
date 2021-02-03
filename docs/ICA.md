@@ -91,7 +91,7 @@ In order not to remove too many, my personal benchmark is that I only remove mus
 #### Alpha
 
 ![](./images/ICA/Alpha.PNG)
-This is a typical alpha component. It is definitely EEG data. Not only is it a blob in the middle of the head, but it also has a nice little bump over alpha.
+This is a typical alpha component. It is definitely EEG data. Not only is it a blob in the middle of the head, but it also has a nice little bump over alpha in the power spectrum.
 
 
 <p>&nbsp;</p>
@@ -104,7 +104,10 @@ This is a typical alpha component. It is definitely EEG data. Not only is it a b
 It can happen with virtually every component that the polarity gets somehow inverted. When looking at the spectrum though, you see that it's the same thing. When this happens to blinks, it is important that you also remove the inverted components.
 
 
+
 <p>&nbsp;</p>
+
+#### Mixed effects
 
 ![](./images/ICA/AlphaBlinks.PNG)
 This component is a problem, choose for yourself whether to remove or not; I don't. Basically what happens is if a person has really long blinks, alpha has time to kick in, and so you have alpha oscillations synchronized to the blinks. 
@@ -153,16 +156,14 @@ This is a clearer example of a component that occurs right over the eyes, but is
 
 ### Do not remove: messy component
 
-<p>&nbsp;</p>
-
 ![](./images/ICA/Face.PNG)
 This is a component driven entirely by one of the two face channels (if not removed before hand). It is characterized by increasingly higher >20Hz activity. When you know something comes from just one channel, don't remove it with ICA, remove it as a channel.
 
 
 <p>&nbsp;</p>
 
-![](./images/ICA/Muscle3.PNG)
-This is most likely a muscle component, but given that it is not spread throughout the recording, I took out this by cutting data in time instead. Also, the >20Hz activity is lower than the <20Hz.
+![](./images/ICA/muscle3.PNG)
+This is most likely a muscle component, but given that it is not spread throughout the recording, I took this out by cutting data in time instead. Also, the >20Hz activity is lower than the <20Hz.
 
 <p>&nbsp;</p>
 
