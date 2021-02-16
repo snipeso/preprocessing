@@ -39,7 +39,7 @@ markData(EEG) % plot data
 %%% rest of the channel is fine, you can mark a section to remove, by
 %%% running rmSnip(), indicating in seconds the start time and end time
 %%% of the channel you want to remove. If you run this, then open
-%%% MarkData() it will highlight the section in red.
+%%% markData() it will highlight the section in red.
 
 % remove channels entirely
 % rmSnip(EEG, StartTime, EndTime, Channel) % remove a snippet of data

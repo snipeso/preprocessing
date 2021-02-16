@@ -64,7 +64,7 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
     EEG = pop_loadset('filepath', Source_EEG, 'filename', Filename_Source_EEG);
     
     % clean data segments
-    [EEGnew, badchans] = interpolateSegments(EEG, fullfile(Source_Cuts, Filename_Cuts), EEG_Channels);
+    [EEGnew, badchans] = interpolateSegments(EEG, fullfile(Source_Cuts, Filename_Cuts), ExcludeChannels);
     
     
     % interpolate bad channels
