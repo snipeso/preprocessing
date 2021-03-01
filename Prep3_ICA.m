@@ -17,7 +17,7 @@ VeryBadChannels = [EEG_Channels.EMG, EEG_Channels.face]; % indicate here channel
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+load('Cz.mat', 'CZ')
 
 Source = fullfile(Paths_Preprocessed, 'ICA', 'SET');
 Source_Cuts = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
@@ -49,6 +49,7 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
     % load dataset
     EEG = pop_loadset('filepath', Source, 'filename', Filename_Source);
     
+    
     % load cuts
     load(fullfile(Source_Cuts, Filename_Cuts), 'badchans')
     if ~exist('badchans', 'var')
@@ -59,6 +60,9 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
     badchans(badchans<1 | badchans>128) = [];
     EEG = pop_select(EEG, 'nochannel', unique([badchans, VeryBadChannels]));
     
+            % add CZ
+    EEG.data(end+1, :) = zeros(1, size(EEG.data, 2));
+    EEG.chanlocs(end+1) = CZ;
     
     % rereference to average
     EEG = pop_reref(EEG, []);

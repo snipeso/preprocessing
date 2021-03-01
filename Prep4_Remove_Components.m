@@ -31,6 +31,7 @@ Automate = false; % indicate false if you want to manually choose the components
 
 General_Parameters
 
+load('Cz.mat', 'CZ')
 
 % get files and paths
 Source_Comps = fullfile(Paths_Preprocessed, 'ICA', 'Components');
@@ -82,8 +83,14 @@ for Indx_F = 1:nFiles % loop through files in source folder
     Data = pop_loadset('filepath', Source_Data, 'filename', Filename_Data); % this is the EEG data you want to remove components from
     EEG = pop_loadset('filepath', Source_Comps, 'filename', Filename_Comps); % this is the EEG data where components were generated
     
+
+    
     % remove channels from Data that aren't in EEG
     Data = pop_select(Data, 'channel', labels2indexes({EEG.chanlocs.labels}, Data.chanlocs));
+    
+           % add CZ
+    Data.data(end+1, :) = zeros(1, size(Data.data, 2));
+    Data.chanlocs(end+1) = CZ;
     
     % rereference to average
     Data = pop_reref(Data, []);
