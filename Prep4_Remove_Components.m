@@ -6,7 +6,8 @@
 % the editor will ask if the current selection is good. If you answer 'y',
 % then it will save the new eeg without the components. If you answer 'n',
 % it will loop around and show the topographies again. If you answer 's',
-% it will skip the current recording, and show the next one.
+% it will skip the current recording, and show the next one. If you answer
+% 'redo' it will delete the ICA file, so you can redo the cutting part.
 
 % If you indicate true for Automate, and false for Checkoutput, it will
 % just take all the components selected, and apply them to the desired
@@ -56,7 +57,6 @@ for Indx_F = 1:nFiles % loop through files in source folder
         % get filenames
         Filename_Comps = Files{Indx_F};
         Filename_Data = replace(Filename_Comps, 'ICA_Components', Data_Type);
-        Filename_BadComps = [extractBefore(Filename_Comps,'.set'), '.mat'];
         Filename_Destination = [extractBefore(Filename_Data, Data_Type), 'Deblinked.set'];
         
         % skip if file already exists
@@ -67,7 +67,6 @@ for Indx_F = 1:nFiles % loop through files in source folder
     else % load requested file
         Filename_Comps = Filename;
         Filename_Data = replace(Filename_Comps, 'ICA_Components', Data_Type);
-        Filename_BadComps = [extractBefore(Filename_Comps,'.set'), '.mat'];
         Filename_Destination = [extractBefore(Filename_Data, Data_Type), 'Deblinked.set'];
     end
     
@@ -83,12 +82,12 @@ for Indx_F = 1:nFiles % loop through files in source folder
     Data = pop_loadset('filepath', Source_Data, 'filename', Filename_Data); % this is the EEG data you want to remove components from
     EEG = pop_loadset('filepath', Source_Comps, 'filename', Filename_Comps); % this is the EEG data where components were generated
     
-
+    
     
     % remove channels from Data that aren't in EEG
     Data = pop_select(Data, 'channel', labels2indexes({EEG.chanlocs.labels}, Data.chanlocs));
     
-           % add CZ
+    % add CZ
     Data.data(end+1, :) = zeros(1, size(Data.data, 2));
     Data.chanlocs(end+1) = CZ;
     

@@ -23,8 +23,6 @@ ExcludeChannels = [...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 % get final channels
 load('StandardChanlocs128.mat', 'StandardChanlocs')
 load('Cz.mat', 'CZ')
