@@ -16,46 +16,11 @@ Destination_Formats = {'Power', 'Cleaning', 'ICA'}; % chooses which filtering to
 
 LineNoise = 50; % frequency of line noise. 50 for EU, 60 for US
 
-ShaveTime = [0 5]; % data to remove in seconds
+ShaveTime = [0 5]; % data to remove (atart and stop in seconds)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% parameters
-
-Parameters = struct();
-
-% Cleaning: data for quickly scanning data and selecting bad timepoints
-Parameters(2).Format = 'Cleaning'; % reference name
-Parameters(2).fs = 125; % new sampling rate
-Parameters(2).lp = 40; % low pass filter
-Parameters(2).hp = 0.5; % high pass filter
-Parameters(2).hp_stopband = 0.25; % high pass filter
-
-% Wake: starting data for properly cleaned wake data
-Parameters(3).Format = 'Power'; % reference name
-Parameters(3).fs = 500; % new sampling rate
-Parameters(3).lp = 40; % low pass filter
-Parameters(3).hp = 0.5; % high pass filter
-Parameters(3).hp_stopband = 0.25; % high pass filter
 
 
-% ICA: heavily filtered data for getting ICA components
-Parameters(4).Format = 'ICA'; % reference name
-Parameters(4).fs = 500; % new sampling rate
-Parameters(4).lp = 100; % low pass filter
-Parameters(4).hp = 2.5; % high pass filter
-Parameters(4).hp_stopband = 1.5; % high pass filter
-
-
-% ERP: minimally filtered data for measuring ERPs
-Parameters(6).Format = 'ERP'; % reference name
-Parameters(6).fs = 500; % new sampling rate
-Parameters(6).lp = 40; % low pass filter
-Parameters(6).hp = 0.1; % high pass filter
-Parameters(6).hp_stopband = 0.05; % high pass filter
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Create filtered sets
 
 Source = fullfile(Paths_Preprocessed, 'Unfiltered');
@@ -71,12 +36,11 @@ for Indx_DF = 1:numel(Destination_Formats)
     end
     
     % get parameters based on format
-    Indx = strcmp({Parameters.Format}, Format);
-    new_fs = Parameters(Indx).fs;
-    lowpass = Parameters(Indx).lp;
-    highpass = Parameters(Indx).hp;
-    hp_stopband = Parameters(Indx).hp_stopband;
-    P = Parameters(Indx); % saved in EEG structure later for record keeping
+    new_fs = Parameters.(Format).fs;
+    lowpass = Parameters.(Format).lp;
+    highpass = Parameters.(Format).hp;
+    hp_stopband = Parameters.(Format).hp_stopband;
+    P = Parameters.(Format); % saved in EEG structure later for record keeping
     
     
     for Indx_F = 1:numel(Files) % this is really much faster in parallel
