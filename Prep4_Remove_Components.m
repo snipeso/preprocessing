@@ -27,7 +27,7 @@ Data_Type = 'Power';
 Filename = [];
 CheckOutput = true; % indicate true if you want to see what the data looks like once removed the components
 Automate = false; % indicate false if you want to manually choose the components. Otherwise it will use what was previously selected
-Destintion_Folder = 'Final';
+Destination_Folder = 'Final';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -38,6 +38,7 @@ load('Cz.mat', 'CZ')
 % get files and paths
 Source_Comps = fullfile(Paths_Preprocessed, 'ICA', 'Components');
 Source_Data = fullfile(Paths_Preprocessed, Data_Type, 'SET');
+Source_Cuts = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
 Destination = fullfile(Paths_Preprocessed, Destination_Folder);
 
 if ~exist(Destination, 'dir')
@@ -54,10 +55,14 @@ Files = Files(randperm(nFiles));
 for Indx_F = 1:nFiles % loop through files in source folder
     
     if isempty(Filename) % choose a random filename
+        
         % get filenames
         Filename_Comps = Files{Indx_F};
-        Filename_Data = replace(Filename_Comps, 'ICA_Components', Data_Type);
-        Filename_Destination = [extractBefore(Filename_Data, Data_Type), 'Deblinked.set'];
+        Filename_Core = extractBefore(Filename_Comps, '_ICA_Components');
+        Filename_Data = [Filename_Core, '_' Data_Type, '.set'];
+        Filename_Destination = [Filename_Core, '_Clean.set'];
+        Filename_Cuts =  [Filename_Core, '_Cleaning_Cuts.mat'];
+        
         
         % skip if file already exists
         if ~Refresh && exist(fullfile(Destination, Filename_Destination), 'file')

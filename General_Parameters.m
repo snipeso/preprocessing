@@ -1,17 +1,21 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Establish locations
-Paths_Preprocessed = 'C:\Users\colas\polybox\MDD\Raw Files\MDD_evening\test';
-Paths_Raw = '';
+Paths_Preprocessed = 'C:\Users\colas\Desktop\TestPrep\Preprocessed';
+Paths_Raw = 'C:\Users\colas\Desktop\TestPrep\Raw';
 Filetype = '.raw'; % either .raw for EGI, or .eeg for BrainAmp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 % add subfolders to path
 addpath(fullfile(cd, 'functions'))
 addpath(fullfile(cd, 'brogden'))
 
+% if eeglab has not run, run it so all the subdirectories get added
+if ~exist('topoplot', 'file')
+    eeglab
+    close all
+end
 
 %%% EEG channels for 128 EGI net
 EEG_Channels = struct();
@@ -29,7 +33,6 @@ EEG_Channels.exclude = [...
     EEG_Channels.neck];
 
 %%% parameters
-
 Parameters = struct();
 
 % Cleaning: data for quickly scanning data and selecting bad timepoints
