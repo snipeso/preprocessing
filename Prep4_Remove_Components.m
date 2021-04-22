@@ -21,7 +21,7 @@ clc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Refresh = false;
+Refresh = true;
 
 Data_Type = 'Power';
 Filename = [];

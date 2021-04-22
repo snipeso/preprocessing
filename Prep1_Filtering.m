@@ -43,7 +43,7 @@ Parameters(4).Format = 'ICA'; % reference name
 Parameters(4).fs = 500; % new sampling rate
 Parameters(4).lp = 100; % low pass filter
 Parameters(4).hp = 2.5; % high pass filter
-Parameters(4).hp_stopband = .5; % high pass filter
+Parameters(4).hp_stopband = 1.5; % high pass filter
 
 
 % ERP: minimally filtered data for measuring ERPs
