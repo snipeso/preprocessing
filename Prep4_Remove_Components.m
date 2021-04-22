@@ -80,12 +80,13 @@ for Indx_F = 1:nFiles % loop through files in source folder
     
     % load data
     Data = pop_loadset('filepath', Source_Data, 'filename', Filename_Data); % this is the EEG data you want to remove components from
+    clc % so you don't see the title and are blind
     EEG = pop_loadset('filepath', Source_Comps, 'filename', Filename_Comps); % this is the EEG data where components were generated
+    clc
     
+    % interpolate bad snippets and removes bad channels
+    [Data, TMPREJ] = cleanCuts(Data, fullfile(Source_Cuts, Filename_Cuts));
     
-    
-    % remove channels from Data that aren't in EEG
-    Data = pop_select(Data, 'channel', labels2indexes({EEG.chanlocs.labels}, Data.chanlocs));
     
     % add CZ
     Data.data(end+1, :) = zeros(1, size(Data.data, 2));

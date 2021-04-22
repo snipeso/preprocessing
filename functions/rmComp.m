@@ -7,15 +7,15 @@ close all
 clc
 
 if ~Automate
-    % remind user which dataset they're cleaning
-    disp(Filename_Comps)
     
-    % open interface for selecting components
+    % plot components in the time domain
     Pix = get(0,'screensize');
     tmpdata = eeg_getdatact(EEG, 'component', [1:size(EEG.icaweights,1)]);
     eegplot( tmpdata, 'srate', EEG.srate,  'spacing', 10, 'dispchans', 35, ...
         'winlength', 20, 'position', [0 0 Pix(3) Pix(4)*.97], ...
         'limits', [EEG.xmin EEG.xmax]*1000);
+    
+    % open interface for selecting components
     pop_selectcomps(EEG, 1:35);
     
     disp('press enter to proceed')
@@ -43,32 +43,45 @@ end
 % merge data with component structure
 NewEEG = EEG;
 NewEEG.data = Data.data;
+NewEEG.pnts = Data.pnts;
+NewEEG.srate = Data.srate;
+NewEEG.xmax = Data.xmax;
+NewEEG.times = Data.times;
+NewEEG.event = Data.event;
 
 % remove components
 NewEEG = pop_subcomp(NewEEG, badcomps);
 
 % low-pass filter
-NewEEG = pop_eegfiltnew(NewEEG, [], 40); % for whatever reason, sometimes ICA removal introduced high frequency noise TODO: call specific frequency
+NewEEG = pop_eegfiltnew(NewEEG, [], Parameters.(Data_Type).lp); % for whatever reason, sometimes ICA removal introduces high frequency noise
 
 
 if CheckOutput
     % % show
     Pix = get(0,'screensize');
-    try
-        eegplot(Data.data(:, 100*EEG.srate:300*EEG.srate), 'spacing', 20, 'srate', NewEEG.srate, ...
-            'winlength', 20, 'position', [0 Pix(4)/2 Pix(3) Pix(4)/2])
-        eegplot(NewEEG.data(:, 100*EEG.srate:300*EEG.srate),'spacing', 20, 'srate', NewEEG.srate, ...
-            'winlength', 20, 'position', [0 0 Pix(3) Pix(4)/2])
-    catch
-        eegplot(Data.data, 'spacing', 20, 'srate', NewEEG.srate, ...
-            'winlength', 20, 'position', [0 Pix(4)/2 Pix(3) Pix(4)/2])
-        eegplot(NewEEG.data,'spacing', 20, 'srate', NewEEG.srate, ...
-            'winlength', 20, 'position', [0 0 Pix(3) Pix(4)/2])
-    end
+    %     try % NOTE TO GIDI: if you liked the old visualization, just switch back to this
+    %         eegplot(Data.data(:, 100*EEG.srate:300*EEG.srate), 'spacing', 20, 'srate', NewEEG.srate, ...
+    %             'winlength', 20, 'position', [0 Pix(4)/2 Pix(3) Pix(4)/2])
+    %         eegplot(NewEEG.data(:, 100*EEG.srate:300*EEG.srate),'spacing', 20, 'srate', NewEEG.srate, ...
+    %             'winlength', 20, 'position', [0 0 Pix(3) Pix(4)/2])
+    %     catch
+    %         eegplot(Data.data, 'spacing', 20, 'srate', NewEEG.srate, ...
+    %             'winlength', 20, 'position', [0 Pix(4)/2 Pix(3) Pix(4)/2])
+    %         eegplot(NewEEG.data,'spacing', 20, 'srate', NewEEG.srate, ...
+    %             'winlength', 20, 'position', [0 0 Pix(3) Pix(4)/2])
+    %     end
+    
+    % plot before and after in two fullscreen windows
+    eegplot(Data.data, 'spacing', 20, 'srate', NewEEG.srate, ...
+        'winlength', 20, 'position', [0 0 Pix(3) Pix(4)*.97],  ...
+        'eloc_file', Data.chanlocs)
+    eegplot(NewEEG.data,'spacing', 20, 'srate', NewEEG.srate, ...
+        'winlength', 20, 'position', [0 0 Pix(3) Pix(4)*.97], ...
+        'eloc_file', NewEEG.chanlocs,  'winrej',  TMPREJ) % Note: this now plots the segments of data marked as bad
     
     % wait to give person time to look at both plots
     pause(5)
-    x = input(['Is ', Filename_Destination, ' ok? (y/n/s) '], 's');
+    x = input(['Is the file ok? (y/n/s) '], 's');
 else
     x = 'auto';
 end
