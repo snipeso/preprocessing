@@ -1,13 +1,13 @@
 % Script by Sophia Snipes, 26/01/21
 % This does the independent component analysis, breaking down the data into
 % components after removing bad channels and rereferencing to the average.
-% The new dataset gets saved in the folder ICA/Components. 
+% The new dataset gets saved in the folder ICA/Components.
+% Inspired by https://sccn.ucsd.edu/wiki/Makoto's_preprocessing_pipeline
 
 clear
 close all
 clc
 
-% TODO: interpolate segments before averaging?
 General_Parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,26 +49,32 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
     % load dataset
     EEG = pop_loadset('filepath', Source, 'filename', Filename_Source);
     
+    % convert to double (weirdly super important for ICA)
+    EEG.data = double(EEG.data);
     
-    % load cuts
-    load(fullfile(Source_Cuts, Filename_Cuts), 'badchans')
-    if ~exist('badchans', 'var')
-        badchans = [];
-    end
+    % remove data marked manually
+    [EEG, TMPREJ] = cleanCuts(EEG, fullfile(Source_Cuts, Filename_Cuts));
     
-    % remove bad channels
-    badchans(badchans<1 | badchans>128) = [];
-    EEG = pop_select(EEG, 'nochannel', unique([badchans, VeryBadChannels]));
-    
-            % add CZ
+    % add CZ
     EEG.data(end+1, :) = zeros(1, size(EEG.data, 2));
     EEG.chanlocs(end+1) = CZ;
+    EEG = eeg_checkset(EEG);
+    
+    % remove bad segments
+    if ~isempty(TMPREJ)
+        EEG = eeg_eegrej(EEG, eegplot2event(TMPREJ, -1));
+    end
     
     % rereference to average
     EEG = pop_reref(EEG, []);
     
     % run ICA (takes a while)
-    EEG = pop_runica(EEG, 'runica');
+    Rank = sum(eig(cov(double(EEG.data'))) > 1E-7);
+    if Rank ~= size(EEG.data, 1)
+        warning(['Applying PCA reduction for ', Filename_Source])
+    end
+    
+    EEG = pop_runica(EEG, 'runica', 'pca', Rank);
     
     % save new dataset
     pop_saveset(EEG, 'filename', Filename_Destination, ...
@@ -78,4 +84,5 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
         'version', '7.3');
     
     disp(['***********', 'Finished ', Filename_Destination, '***********'])
+    clear cutData srate badchans TMPREJ
 end
