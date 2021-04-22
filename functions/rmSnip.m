@@ -14,8 +14,14 @@ if ~ismember('cutData', {Content.name})
 end
 
 fs = EEG.srate;
+[ch, pnts] = size(EEG.data); 
 Start = round(StartTime*fs);
 End = round(EndTime*fs);
+
+%%% handle incorrect inputs
+if Start < 1
+    Start = 1;
+end
 
 % edge case if EndTime is later than the actual file end
 Max = size(EEG.data, 2);
@@ -23,4 +29,9 @@ if End > Max
     End = Max;
 end
 
+if Channel < 1 || Channel > ch
+    error('Not a real channel')
+end
+
+%%% save snippet to cut
 m.cutData(Channel, Start:End) = EEG.data(Channel, Start:End);

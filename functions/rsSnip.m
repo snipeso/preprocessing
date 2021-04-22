@@ -9,13 +9,21 @@ m = matfile(EEG.CutFilepath,'Writable',true);
 Content = whos(m);
 
 fs = EEG.srate;
+[ch, pnts] = size(EEG.data);
 Start = round(StartTime*fs);
 End = round(EndTime*fs);
 
-% edge case if EndTime is later than the actual file end
-Max = size(EEG.data, 2);
-if End > Max
-    End = Max;
+% handle incorrect inputs
+if Start < 1
+    Start = 1;
+end
+
+if End > pnts
+    End = pnts;
+end
+
+if Channel < 1 || Channel > ch
+    error('Not a real channel')
 end
 
 if ismember('cutData', {Content.name})
