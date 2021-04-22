@@ -27,22 +27,22 @@ Data_Type = 'Power';
 Filename = [];
 CheckOutput = true; % indicate true if you want to see what the data looks like once removed the components
 Automate = false; % indicate false if you want to manually choose the components. Otherwise it will use what was previously selected
+Destintion_Folder = 'Final';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 General_Parameters
-
+load('StandardChanlocs128.mat', 'StandardChanlocs')
 load('Cz.mat', 'CZ')
 
 % get files and paths
 Source_Comps = fullfile(Paths_Preprocessed, 'ICA', 'Components');
 Source_Data = fullfile(Paths_Preprocessed, Data_Type, 'SET');
-Destination = fullfile(Paths_Preprocessed, 'ICA', ['Deblinked_',Data_Type]);
+Destination = fullfile(Paths_Preprocessed, Destination_Folder);
 
 if ~exist(Destination, 'dir')
     mkdir(Destination)
 end
-
 
 Files = deblank(cellstr(ls(Source_Comps)));
 Files(~contains(Files, '.set')) = [];

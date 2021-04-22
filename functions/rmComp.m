@@ -86,6 +86,12 @@ else
     x = 'auto';
 end
 
+% interpolate channels
+FinalChanlocs = StandardChanlocs;
+FinalChanlocs(ismember({StandardChanlocs.labels}, string(EEG_Channels.exclude))) = [];
+FinalChanlocs(end+1) = CZ;
+NewEEG = pop_interp(NewEEG, FinalChanlocs);
+
 switch x
     case 'y'
         % save new dataset
