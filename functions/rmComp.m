@@ -86,6 +86,10 @@ else
     x = 'auto';
 end
 
+% remove channels not to include in final dataset
+NotCh = find(ismember({NewEEG.chanlocs.labels}, string(EEG_Channels.exclude)));
+NewEEG = pop_select(NewEEG, 'nochannel', NotCh);
+
 % interpolate channels
 FinalChanlocs = StandardChanlocs;
 FinalChanlocs(ismember({StandardChanlocs.labels}, string(EEG_Channels.exclude))) = [];
