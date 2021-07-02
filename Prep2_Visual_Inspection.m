@@ -15,8 +15,8 @@ SuggestCuts = true; % if true, a rudimentary algorithm will try and identify noi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% load data
 
-Source = fullfile(Paths_Preprocessed, 'Cleaning', 'SET');
-Destination = fullfile(Paths_Preprocessed, 'Cleaning', 'Cuts');
+Source = fullfile(Paths_Preprocessed, 'Power', 'SET');
+Destination = fullfile(Paths_Preprocessed, 'Power', 'Cuts');
 
 EEG = loadEEGtoCut(Source, Destination, Filename); % load file
 m = matfile(EEG.CutFilepath,'Writable',true); % create cuts file, load it to current workspace

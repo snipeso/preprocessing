@@ -12,11 +12,11 @@ General_Parameters
 %%% choose what to filter
 
 Refresh = true; % if false, and destination file already exists, it will skip it
-Destination_Formats = {'Power', 'Cleaning', 'ICA'}; % chooses which filtering to do
+Destination_Formats = {'Power'}; % chooses which filtering to do
 
 LineNoise = 50; % frequency of line noise. 50 for EU, 60 for US
 
-ShaveTime = [0 5]; % data to remove (atart and stop in seconds)
+ShaveTime = [0 1]; % data to remove (start and stop in seconds)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

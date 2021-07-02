@@ -1,9 +1,6 @@
 function [EEG, SET] = loadData(Filename, Filepath)
 % Reads either EGI or BrainAmp data
 
-% get channel locations file for 128 channels
-load('StandardChanlocs128.mat', 'StandardChanlocs')
-
 
 % get common part of filename
 Core = extractBefore(Filename, '.');
@@ -23,7 +20,7 @@ switch Filetype
         EEG.filename = Filename;
         EEG.filepath = Filepath;
         
-        EEG.nbchan = 128;
+        EEG.nbchan = NChan;
         EEG.pnts = NSamp;
         EEG.srate = Samp_Rate;
         EEG.scale = scale;
@@ -45,18 +42,11 @@ switch Filetype
         % convert and load to structure the EEG data
         Data = loadEGIBigRaw(fullfile(Filepath, Filename),1:NChan);
         
-        EEG.data = Data(1:128, :);
-        if size(Data, 1) > 128
-            EEG.extra = Data(129:end, :);
-        end
-        
+        EEG.data = Data;
+       
     case 'eeg'
         VHDR = [Core, '.vhdr'];
         EEG = pop_loadbv(Filepath, VHDR); % If this doesn't work, it's because you didn't download the BV extention yet
 end
-
-% update EEG structure
-EEG.ref = 'CZ';
-EEG.chanlocs = StandardChanlocs;
 
 EEG = eeg_checkset(EEG);
