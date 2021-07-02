@@ -11,7 +11,7 @@ General_Parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% choose what to filter
 
-Refresh = true; % if false, and destination file already exists, it will skip it
+Refresh = false; % if false, and destination file already exists, it will skip it
 Destination_Formats = {'Power'}; % chooses which filtering to do
 
 LineNoise = 50; % frequency of line noise. 50 for EU, 60 for US

@@ -12,13 +12,13 @@ General_Parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Refresh = true;
+Refresh = false;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('Cz.mat', 'CZ')
 
 Source = fullfile(Paths_Preprocessed, 'Power', 'SET');
+Source_Cuts = fullfile(Paths_Preprocessed, 'Power', 'Cuts');
 Destination = fullfile(Paths_Preprocessed, 'Power', 'Clean');
 
 if ~exist(Destination, 'dir')
@@ -32,11 +32,15 @@ for Indx_F = 1:numel(Files) % loop through files in target folder
     
     % get filenames
     Filename_Source = Files{Indx_F};
+     Filename_Cuts =  [extractBefore(Filename_Source, '.set'), '_Cuts.mat'];
      Filename_Destination = ['Clean_',Files{Indx_F}];
    
     % skip if file already exists
     if ~Refresh && exist(fullfile(Destination, Filename_Destination), 'file')
         disp(['***********', 'Already did ', Filename_Destination, '***********'])
+        continue
+    elseif ~exist(fullfile(Source_Cuts, Filename_Cuts), 'file')
+        disp(fullfile(Source_Cuts, Filename_Cuts))
         continue
     end
     

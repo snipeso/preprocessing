@@ -1,8 +1,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Establish locations
-Paths_Preprocessed = 'C:\Users\colas\Desktop\TestPrep\Preprocessed';
-Paths_Raw = 'C:\Users\colas\Desktop\TestPrep\Raw';
+Paths_Preprocessed = 'C:\Users\schlaf\Desktop\TempData\Preprocessed';
+Paths_Raw = 'C:\Users\schlaf\Desktop\TempData\Raw';
 Filetype = '.eeg'; % either .raw for EGI, or .eeg for BrainAmp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,8 +17,6 @@ if ~exist('topoplot', 'file')
     close all
 end
 
-%%% EEG channels for 128 EGI net
-EEG_Channels = struct();
 
 %%% parameters
 Parameters = struct();
