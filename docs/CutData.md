@@ -86,7 +86,7 @@ This is a participant blinking once per second. All eye movements get nicely rem
 #### More clean
 <p>&nbsp;</p>
 
-[](./images/Other/LOTStheta.PNG)
+![](./images/Other/LOTStheta.PNG)
 This is actually clean data; instead all the activity comes from a lot of theta oscillations in a strongly sleep deprivated individual. The channels removed had instead high-frequency noise, and occasional flares of poor contact.
 
 
