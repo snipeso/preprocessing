@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Establish locations
 Paths_Preprocessed = 'C:\Users\colas\Desktop\TestPrep\Preprocessed';
-Paths_Raw = 'C:\Users\colas\Desktop\TestPrep\Raw';
+Paths_Raw = '';
 Filetype = '.raw'; % either .raw for EGI, or .eeg for BrainAmp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
